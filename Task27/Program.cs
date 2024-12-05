@@ -26,7 +26,7 @@ namespace Task27
 
             CitizenRepository citizenRepository = new CitizenRepository(baseProvider);
 
-            RegistrationSiteModel siteModel = new RegistrationSiteModel(new Sha256Hasher(), citizenRepository);
+            RegistrationSiteModel siteModel = new RegistrationSiteModel(new Sha256HashStrategy(), citizenRepository);
 
             RegistrationSitePresenterFactory sitePresenterFactory = new RegistrationSitePresenterFactory(siteModel);
 

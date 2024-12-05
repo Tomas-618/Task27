@@ -14,12 +14,12 @@ namespace Task27.Services.Infrastructures.Repositories
         public CitizenRepository(DataBaseProvider dataBaseProvider) =>
             _baseProvider = dataBaseProvider ?? throw new ArgumentNullException();
 
-        public CitizenModel FindCitizen(string hash)
+        public CitizenModel FindCitizen(TextHashModel hashModel)
         {
-            DataTable dataTable = _baseProvider.FindCitizenData(hash);
+            DataTable dataTable = _baseProvider.FindCitizenData(hashModel.Hash);
 
             if (dataTable.Rows.Count == 0)
-                throw new PassportNotFoundException();
+                throw new PassportNotFoundException(hashModel.Text);
 
             return new CitizenModel((bool)dataTable.Rows[0].ItemArray[1]);
         }

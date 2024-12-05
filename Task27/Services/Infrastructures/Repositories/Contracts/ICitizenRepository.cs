@@ -4,6 +4,6 @@ namespace Task27.Services.Infrastructures.Repositories.Contracts
 {
     public interface ICitizenRepository
     {
-        CitizenModel FindCitizen(string hash);
+        CitizenModel FindCitizen(TextHashModel hashModel);
     }
 }

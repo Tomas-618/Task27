@@ -6,16 +6,16 @@ namespace Task27.Services.Domain.Models
 {
     public class RegistrationSiteModel
     {
-        private readonly IHasher _hasher;
+        private readonly IHashStrategy _hasher;
         private readonly ICitizenRepository _citizenRepository;
 
-        public RegistrationSiteModel(IHasher hasher, ICitizenRepository citizenRepository)
+        public RegistrationSiteModel(IHashStrategy hasher, ICitizenRepository citizenRepository)
         {
             _hasher = hasher ?? throw new ArgumentNullException(nameof(hasher));
             _citizenRepository = citizenRepository ?? throw new ArgumentNullException(nameof(citizenRepository));
         }
 
         public CitizenModel GetCitizen(PassportModel passport) =>
-            _citizenRepository.FindCitizen(_hasher.GetHash(passport.SerialNumber));
+            _citizenRepository.FindCitizen(new TextHashModel(_hasher, passport.SerialNumber));
     }
 }

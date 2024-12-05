@@ -27,14 +27,12 @@ namespace Task27
 
                 string voteAccess = citizen.CanVote ? "ПРЕДОСТАВЛЕН" : "НЕ ПРЕДОСТАВЛЯЛСЯ";
 
-                passportSerialNumber = passport.SerialNumber;
-
-                _view.SetTextResult($"По паспорту «{passportSerialNumber}» доступ к" +
+                _view.SetTextResult($"По паспорту «{passport.SerialNumber}» доступ к" +
                     $"бюллетеню на дистанционном электронном голосовании {voteAccess}");
             }
-            catch (PassportNotFoundException)
+            catch (PassportNotFoundException passportNotFoundException)
             {
-                _view.SetTextResult($"Паспорт «{passportSerialNumber}» в списке" +
+                _view.SetTextResult($"Паспорт «{passportNotFoundException.SerialNumber}» в списке" +
                     $"участников дистанционного голосования НЕ НАЙДЕН");
             }
             catch (FileNotFoundException fileNotFoundException)

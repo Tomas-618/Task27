@@ -5,7 +5,7 @@ using Task27.Services.Domain.Models.Contracts;
 
 namespace Task27.Services.Domain.Models
 {
-    public class Sha256Hasher : IHasher
+    public class Sha256HashStrategy : IHashStrategy
     {
         public string GetHash(string text)
         {
