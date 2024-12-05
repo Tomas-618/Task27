@@ -1,5 +1,11 @@
 ﻿using System;
+using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
+using Task27.DataLayer;
+using Task27.Factories.Entities;
+using Task27.Services.Domain.Models;
+using Task27.Services.Infrastructures.Repositories;
 
 namespace Task27
 {
@@ -13,7 +19,20 @@ namespace Task27
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RegistrationSiteView());
+
+            DataBaseProvider baseProvider = new DataBaseProvider(new ConnectionPathModel("Data Source=" +
+                Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "\\{0}",
+                "db.sqlite"));
+
+            CitizenRepository citizenRepository = new CitizenRepository(baseProvider);
+
+            RegistrationSiteModel siteModel = new RegistrationSiteModel(new Sha256Hasher(), citizenRepository);
+
+            RegistrationSitePresenterFactory sitePresenterFactory = new RegistrationSitePresenterFactory(siteModel);
+
+            RegistrationSiteView siteView = new RegistrationSiteView(sitePresenterFactory);
+
+            Application.Run(siteView);
         }
     }
 }
