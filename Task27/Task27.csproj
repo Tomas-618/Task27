@@ -170,13 +170,14 @@
     <Compile Include="Services\Domain\Exceptions\PassportNotFoundException.cs" />
     <Compile Include="Services\Domain\Models\CitizenModel.cs" />
     <Compile Include="Services\Domain\Models\ConnectionPathModel.cs" />
+    <Compile Include="Services\Domain\Models\TextHashModel.cs" />
     <Compile Include="Services\Domain\Models\PassportModel.cs" />
     <Compile Include="Services\Domain\Models\RegistrationSiteModel.cs" />
     <Compile Include="DataLayer\Exceptions\FileNotFoundException.cs" />
     <Compile Include="Services\Infrastructures\Repositories\CitizenRepository.cs" />
-    <Compile Include="Services\Domain\Models\Contracts\IHasher.cs" />
+    <Compile Include="Services\Domain\Models\Contracts\IHashStrategy.cs" />
     <Compile Include="Services\Infrastructures\Repositories\Contracts\ICitizenRepository.cs" />
-    <Compile Include="Services\Domain\Models\Sha256Hasher.cs" />
+    <Compile Include="Services\Domain\Models\Sha256HashStrategy.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
