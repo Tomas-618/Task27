@@ -5,16 +5,16 @@ namespace Task27.Services.Domain.Models
 {
     public struct TextHashModel
     {
-        private readonly IHashStrategy _hasher;
-
         public TextHashModel(IHashStrategy hasher, string text)
         {
+            if (hasher == null)
+                throw new ArgumentNullException(nameof(hasher));
+
             if (string.IsNullOrEmpty(text))
                 throw new ArgumentNullException(nameof(text));
 
-            _hasher = hasher ?? throw new ArgumentNullException(nameof(hasher));
             Text = text;
-            Hash = _hasher.GetHash(text);
+            Hash = hasher.GetHash(text);
         }
 
         public string Text { get; }
